@@ -1,0 +1,59 @@
+/* variables */
+:root {
+    --main-color: #ff8875;
+    --sec-color: #5a3673;
+}
+
+/* fonts */
+@font-face {
+    
+}
+
+/* set margin & padding to default */
+body, ul, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* set main color */
+body {
+    background-color: var(--main-color);
+}
+
+/* set secondary color */
+h1, h2, h3, p, label, a, li, legend, input[type="search"], input[type="email"] {
+    color: var(--sec-color);
+}
+
+/* styling */
+ul {
+    list-style-type: none;
+}
+
+input[type="search"], input[type="email"], button {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+}
+
+input[type="email"] {
+    border-bottom: solid 0.1em;
+}
+
+/* add animation of flying bird */
+button:after {
+    
+}
+
+/* media queries */
+
+/* minimize motion and animations*/
+@media (prefers-reduced-motion) {
+    
+}
+
+/* change theme to dark */
+@media (prefers-color-scheme: dark) {
+    
+}
