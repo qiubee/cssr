@@ -138,7 +138,7 @@ main section:first-of-type li:nth-child(even):hover {
     margin: -3em;
 }
 
-main section:first-of-type li:nth-child(2):hover:lang(en):before {
+main section:first-of-type li:nth-child(2):hover:before {
     content: "رکو! یہ مت کرو ...";
     display: inline-block;
     font-size: 162%;
@@ -148,7 +148,7 @@ main section:first-of-type li:nth-child(2):hover:lang(en):before {
     color: var(--sec-color);
 }
 
-main section:first-of-type li:nth-child(4):hover:lang(en):before {
+main section:first-of-type li:nth-child(4):hover:before {
     content: "Fékk bara að borða";
     display: inline-block;
     font-size: 215%;
@@ -156,6 +156,13 @@ main section:first-of-type li:nth-child(4):hover:lang(en):before {
     font-weight: bold;
     transform: rotate(45deg) translate(4em, 1em);
     color: var(--sec-color);
+}
+
+:lang(fr) {
+    text-decoration-line: overline;
+    text-decoration-color: var(--main-color);
+    text-align-last: center;
+    list-style-type: none;
 }
 
 input[type="search"], input[type="email"], button {
