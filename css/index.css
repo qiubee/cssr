@@ -2,6 +2,11 @@
 :root {
     --main-color: #ff8875;
     --sec-color: #5a3673;
+    --orange-font: Orange Juice, "Lucida Grande", "Segoe UI", "Roboto", "Ubuntu";
+    --aleo-font: Aleo, "Lucida Grande", "Segoe UI", "Roboto", "Ubuntu";
+    --slow-ease-font-size: font-size 1s ease-in-out;
+    --fast-ease-font-size: font-size 0.3s ease-in-out;
+    --fallback-font: "Lucida Grande", "Segoe UI", "Roboto", "Ubuntu";
 }
 
 /* fonts */
@@ -21,25 +26,33 @@ body, ul, h1, h2, h3, p {
     padding: 0;
 }
 
+/* set decoration to default */
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 /* set main color */
 body {
     background-color: var(--main-color);
 }
 
 /* set secondary color */
-h1, h2, h3, p, label, a, li, legend, input[type="search"], input[type="email"] {
+* {
     color: var(--sec-color);
 }
 
 /* styling */
-
-
 h1 {
     position: relative;
     z-index: 2;
-    font-family: "Orange Juice";
+    font-family: var(--orange-font);
     font-size: 3.5em;
     margin: 5em 20em 0 15em;
+    cursor: default;
 }
 
 h1:first-letter {
@@ -50,14 +63,20 @@ h1 span {
     position: relative;
     z-index: 1;
     display: flex;
+    transition: var(--slow-ease-font-size);
 }
 
 h1 > span:first-of-type {
-    margin: -10em 1.5em 0 1.5em;
+    transform: translate(-10em 1.5em 0 1.5em);
+}
+
+h1 > span:first-of-type:hover {
+    font-size: calc(10vmax * (5.9 / 2.419));
+    transition: var(--slow-ease-font-size);
 }
 
 h1 span:nth-of-type(n+2):nth-last-of-type(n+6) {
-    font-family: "Aleo";
+    font-family: var(--aleo-font);
     text-transform: uppercase;
     font-size: 7em;
     transform: translate(-0.95em, -0.85em) rotate(25deg);
@@ -69,28 +88,74 @@ h1 span:nth-of-type(2) {
 }
 
 h1 span:nth-of-type(3) {
-    margin-top: -0.8em;
-    margin-left: 0.81em;
+    transform: translateY(-0.8em);
+    transform: translateX(1.81em);
     z-index: 0;
     color: var(--sec-color);
 }
 
 h1 span:nth-of-type(4) {
     font-size: 0.85em;
-    margin: -11.9em 1.75em 0 1.75em;
+    transform: translate(-.9em 1.75em 0 1.75em);
 }
 
 h1 span:nth-of-type(5) {
     font-size: 0.75em;
-    margin: 2.2em 2.5em;
+    transform: translate(2.2em 2.5em);
 }
 
-h1 span:nth-of-type(n+5){
-    
+h1 span:nth-of-type(3n+2) {
+    font-size: calc(25vh / 8 * (9));
+    transform: translate(43%) skew(20deg);
 }
 
-ul {
-    list-style-type: none;
+main section:first-of-type li:nth-child(even):hover {
+    font-size: 15vmin;
+    border: ridge var(--sec-color) calc(9/10vw);
+}
+
+main section:first-of-type li:nth-child(even) a {
+    font-family: var(--fallback-font);
+    font-size-adjust: 1.4;
+    color: var(--sec-color);
+    padding-left: 25vw;
+    border: groove var(--main-color) 10vmin;
+    text-decoration: wavy overline;
+    transition: var(--fast-ease-font-size);
+}
+
+main section:first-of-type li:nth-child(even) a:first-letter {
+    font-size: 35vh;
+}
+
+main section:first-of-type li:nth-child(even) a:hover {
+    cursor: wait;
+    color: var(--sec-color);
+}
+
+main section:first-of-type li:nth-child(even):hover {
+    padding-left: 0;
+    margin: -3em;
+}
+
+main section:first-of-type li:nth-child(2):hover:lang(en):before {
+    content: "رکو! یہ مت کرو ...";
+    display: inline-block;
+    font-size: 162%;
+    transform: rotate(82deg) translateX(2.5em);
+    font-family: var(--aleo-font);
+    font-weight: bold;
+    color: var(--sec-color);
+}
+
+main section:first-of-type li:nth-child(4):hover:lang(en):before {
+    content: "Fékk bara að borða";
+    display: inline-block;
+    font-size: 215%;
+    font-family: var(--aleo-font);
+    font-weight: bold;
+    transform: rotate(45deg) translate(4em, 1em);
+    color: var(--sec-color);
 }
 
 input[type="search"], input[type="email"], button {
@@ -113,7 +178,29 @@ button:after {
 
 /* minimize motion and animations*/
 @media (prefers-reduced-motion) {
+    h1 > span:first-of-type:hover {
+        font-size: inherit;
+    }
+    main section:first-of-type li:nth-child(even) {
+        padding-top: 10em;
+    }
+    main section:first-of-type li:nth-child(even):hover {
+        padding-left: inherit;
+        margin: inherit;
+    }
+    main section:first-of-type li:nth-child(even):hover {
+        font-size: inherit;
+        border: inherit;
+    }
     
+    main section:first-of-type li:nth-child(even) a:hover {
+        cursor: pointer;
+        color: inherit;
+    }
+    
+    main section:first-of-type li:nth-child(even):hover:lang(en):before {
+        display: none;
+    }
 }
 
 /* change theme to dark */
@@ -122,7 +209,12 @@ button:after {
         background-color: var(--sec-color);
     }
     
-    h1, h2, h3, p, label, a, li, legend, input[type="search"], input[type="email"] {
-    color: var(--main-color);
+   * {
+       color: var(--main-color);
+    }
+    
+    main section:first-of-type li:nth-child(even) a {
+        color: var(--main-color);
+        border: groove var(--sec-color) 10vmin;
     }
 }
