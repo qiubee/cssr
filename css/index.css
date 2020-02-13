@@ -5,6 +5,7 @@
     --orange-font: Orange Juice, "Lucida Grande", "Segoe UI", "Roboto", "Ubuntu";
     --aleo-font: Aleo, "Lucida Grande", "Segoe UI", "Roboto", "Ubuntu";
     --slow-ease-font-size: font-size 1s ease-in-out;
+    --slow-ease-color: color 1s ease-in-out;
     --fast-ease-font-size: font-size 0.3s ease-in-out;
     --fallback-font: "Lucida Grande", "Segoe UI", "Roboto", "Ubuntu";
 }
@@ -109,53 +110,81 @@ h1 span:nth-of-type(3n+2) {
     transform: translate(43%) skew(20deg);
 }
 
+main section:first-of-type li:nth-child(even) {
+    cursor: grab;
+    padding-left: 0;
+    font-size: 0vw;
+    width: 60vw;
+    transition: transform 1.5s ease, padding 5s ease-in-out;
+}
+
 main section:first-of-type li:nth-child(even):hover {
-    font-size: 15vmin;
+    font-size: 1.25vw;
     border: ridge var(--sec-color) calc(9/10vw);
+    transform: translate(5em);
+    padding-left: 25vw;
+}
+
+main section:first-of-type li a {
+    font-family: var(--aleo-font);
+    color: var(--main-color);
+    transition: var(--slow-ease-font-size), var(--slow-ease-color);
 }
 
 main section:first-of-type li:nth-child(even) a {
-    font-family: var(--fallback-font);
-    font-size-adjust: 1.4;
-    color: var(--sec-color);
-    padding-left: 25vw;
-    border: groove var(--main-color) 10vmin;
+    font-size: 500%;
     text-decoration: wavy overline;
-    transition: var(--fast-ease-font-size);
 }
 
-main section:first-of-type li:nth-child(even) a:first-letter {
+main section:first-of-type li:nth-child(odd) a {
+    font-size: 25vmin;
+    text-decoration: dashed line-through;
+}
+
+main section:first-of-type li:nth-child(even):first-letter {
+    line-height: 0.75em;
     font-size: 35vh;
 }
 
+main section:first-of-type li a:hover {
+    cursor: none;
+    text-transform: uppercase;
+    animation: 0.25s infinite alternate ease-in-out color-blink;
+}
+
 main section:first-of-type li:nth-child(even) a:hover {
-    cursor: wait;
-    color: var(--sec-color);
+    font-size: 17.5vw;
 }
 
-main section:first-of-type li:nth-child(even):hover {
-    padding-left: 0;
-    margin: -3em;
+main section:first-of-type li:nth-child(odd) a:hover {
+    display: inline-block;
+    transform: rotate(90deg) translateY(262vw) scale(2);
 }
 
-main section:first-of-type li:nth-child(2):hover:before {
+main section:first-of-type li:nth-child(odd) a:hover:after {
     content: "رکو! یہ مت کرو ...";
     display: inline-block;
-    font-size: 162%;
-    transform: rotate(82deg) translateX(2.5em);
-    font-family: var(--aleo-font);
+    font-size: 350%;
+    transform-origin: bottom right;
+    transform: rotate(35deg) translate(-103vw, -60vw);
+    font-family: var(--fallback-font);
     font-weight: bold;
+    line-height: 0.5em;
     color: var(--sec-color);
+    animation: 15s ease-in-out infinite alternate blow-bubble;
 }
 
-main section:first-of-type li:nth-child(4):hover:before {
+main section:first-of-type li:nth-child(even) a:hover:after {
     content: "Fékk bara að borða";
     display: inline-block;
-    font-size: 215%;
-    font-family: var(--aleo-font);
+    font-size: 175%;
+    font-family: var(--fallback-font);
     font-weight: bold;
-    transform: rotate(45deg) translate(4em, 1em);
+    line-height: 0.5em;
+    transform-origin: center;
+    transform: scale(-4, 5) rotate(175deg) translate(10vw, -10vw);
     color: var(--sec-color);
+    animation: 1.8s infinite text-to-uppercase, 15s linear infinite alternate blow-bubble-negative;
 }
 
 :lang(fr) {
@@ -220,8 +249,53 @@ button:after {
        color: var(--main-color);
     }
     
-    main section:first-of-type li:nth-child(even) a {
+    main section:first-of-type li:nth-child(even) {
         color: var(--main-color);
-        border: groove var(--sec-color) 10vmin;
+    }
+}
+
+@counter-style emoji {
+    
+}
+
+/* - add parallex 
+*/
+
+@keyframes color-blink {
+    from {
+        color: var(--sec-color);
+    }
+    to {
+        color: var(--main-color);
+    }
+}
+
+@keyframes text-to-uppercase {
+    0% {
+        text-transform: uppercase;
+    }
+    25% {
+        text-transform: full-width;
+    }
+    50% {
+        text-transform: lowercase;
+    }
+    75% {
+        text-transform: full-width;
+    }
+    100% {
+        text-transform: uppercase;
+    }
+}
+
+@keyframes blow-bubble-negative {
+    to {
+        transform: scale(-31, 3.5);
+    }
+}
+
+@keyframes blow-bubble {
+    to {
+        transform: scale(3.5);
     }
 }
