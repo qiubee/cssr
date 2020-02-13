@@ -158,7 +158,8 @@ main section:first-of-type li:nth-child(even) a:hover {
 
 main section:first-of-type li:nth-child(odd) a:hover {
     display: inline-block;
-    transform: rotate(90deg) translateY(262vw) scale(2);
+/*     transform-origin: left;
+    transform: rotate(90deg) translateY(2vw); */
 }
 
 main section:first-of-type li:nth-child(odd) a:hover:after {
