@@ -47,12 +47,18 @@ body {
 }
 
 /* styling */
+header, form, section:nth-of-type(n+2), footer {
+    position: absolute;
+    top: -99em;
+    left: -99em;
+}
+
 h1 {
     position: relative;
     z-index: 2;
     font-family: var(--orange-font);
     font-size: 3.5em;
-    margin: 5em 20em 0 15em;
+    margin: 10vw 0 0 65vh;
     cursor: default;
 }
 
@@ -68,11 +74,11 @@ h1 span {
 }
 
 h1 > span:first-of-type {
-    transform: translate(-10em 1.5em 0 1.5em);
+    font-family: var(--aleo-font);
 }
 
 h1 > span:first-of-type:hover {
-    font-size: calc(10vmax * (5.9 / 2.419));
+    font-size: 15vw;
     transition: var(--slow-ease-font-size);
 }
 
@@ -85,29 +91,42 @@ h1 span:nth-of-type(n+2):nth-last-of-type(n+6) {
 
 h1 span:nth-of-type(2) {
     z-index: -1;
-    color: var(--main-color);
+}
+
+h1 span:nth-of-type(2):hover {
+    animation: 1.25s reverse ease-in-out rotate;
 }
 
 h1 span:nth-of-type(3) {
-    transform: translateY(-0.8em);
-    transform: translateX(1.81em);
+    transform: translateY(-0.8em) translateX(1.81em);
     z-index: 0;
-    color: var(--sec-color);
 }
 
 h1 span:nth-of-type(4) {
-    font-size: 0.85em;
-    transform: translate(-.9em 1.75em 0 1.75em);
-}
-
-h1 span:nth-of-type(5) {
     font-size: 0.75em;
-    transform: translate(2.2em 2.5em);
+    transform: translateY(-50vh) rotate(-49deg);
 }
 
 h1 span:nth-of-type(3n+2) {
     font-size: calc(25vh / 8 * (9));
-    transform: translate(43%) skew(20deg);
+    transform: translateX(13%) translateY(-41vh) skew(20deg) rotate(35deg);
+}
+
+main section:first-of-type h2 {
+    display: block;
+    text-transform: uppercase;
+    cursor: help;
+    font-size: 25vh;
+    font-family: var(--fallback-font);
+    width: 100vw;
+    height: 25vh;
+    padding-left: 100vw;
+    transform: translateX(-100vw);
+    opacity: 0%;
+}
+
+main section:first-of-type h2:hover {
+    animation: 5s ease-in-out show-header;
 }
 
 main section:first-of-type li:nth-child(even) {
@@ -127,7 +146,6 @@ main section:first-of-type li:nth-child(even):hover {
 
 main section:first-of-type li a {
     font-family: var(--aleo-font);
-    color: var(--main-color);
     transition: var(--slow-ease-font-size), var(--slow-ease-color);
 }
 
@@ -156,35 +174,28 @@ main section:first-of-type li:nth-child(even) a:hover {
     font-size: 17.5vw;
 }
 
-main section:first-of-type li:nth-child(odd) a:hover {
+main section:first-of-type li a:hover:after {
     display: inline-block;
-/*     transform-origin: left;
-    transform: rotate(90deg) translateY(2vw); */
+    font-family: var(--fallback-font);
+    font-weight: bold;
+    line-height: 0.5em;
+    color: var(--main-color);
+    user-select: none;
 }
 
 main section:first-of-type li:nth-child(odd) a:hover:after {
     content: "رکو! یہ مت کرو ...";
-    display: inline-block;
     font-size: 350%;
     transform-origin: bottom right;
     transform: rotate(35deg) translate(-103vw, -60vw);
-    font-family: var(--fallback-font);
-    font-weight: bold;
-    line-height: 0.5em;
-    color: var(--sec-color);
     animation: 15s ease-in-out infinite alternate blow-bubble;
 }
 
 main section:first-of-type li:nth-child(even) a:hover:after {
     content: "Fékk bara að borða";
-    display: inline-block;
     font-size: 175%;
-    font-family: var(--fallback-font);
-    font-weight: bold;
-    line-height: 0.5em;
     transform-origin: center;
     transform: scale(-4, 5) rotate(175deg) translate(10vw, -10vw);
-    color: var(--sec-color);
     animation: 1.8s infinite text-to-uppercase, 15s linear infinite alternate blow-bubble-negative;
 }
 
@@ -204,11 +215,6 @@ input[type="search"], input[type="email"], button {
 
 input[type="email"] {
     border-bottom: solid 0.1em;
-}
-
-/* add animation of flying bird */
-button:after {
-    
 }
 
 /* media queries */
@@ -241,7 +247,7 @@ button:after {
 }
 
 /* change theme to dark */
-@media (prefers-color-scheme: dark) { 
+@media (prefers-color-scheme: dark)  { 
     body {
         background-color: var(--sec-color);
     }
@@ -250,8 +256,8 @@ button:after {
        color: var(--main-color);
     }
     
-    main section:first-of-type li:nth-child(even) {
-        color: var(--main-color);
+    main section:first-of-type li a:hover:after {
+        color: var(--sec-color);
     }
 }
 
@@ -259,9 +265,7 @@ button:after {
     
 }
 
-/* - add parallex 
-*/
-
+/* animations */
 @keyframes color-blink {
     from {
         color: var(--sec-color);
@@ -300,3 +304,38 @@ button:after {
         transform: scale(3.5);
     }
 }
+
+@keyframes show-header {
+    0% {
+        padding-left: 0;
+        
+        transform: translateX(-70vw);
+        opacity: 0%;
+    }
+    10% {
+        font-size: 25vh;
+    }
+    33% {
+        font-size: 10vh;
+        opacity: 100%;
+    }
+    50% {
+        font-size: 25vh;
+        opacity: 0%;
+        padding-left: 105vw;
+    }
+    100% {
+        transform: translateX(70vw);
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: translate(-0.95em, -0.85em) rotate(360deg);
+    }
+}
+
+/* - add parallex 
+https://css-tricks.com/ordered-lists-unicode-symbols/
+https://www.quackit.com/css/at-rules/descriptors/css_additive-symbols_descriptor.cfm
+*/
