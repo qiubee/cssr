@@ -42,6 +42,8 @@ header, form, section:nth-of-type(n+2), footer {
     top: -99em;
 }
 
+/* -- Styling -- */
+
 /* set main color */
 body {
     background-color: var(--main-color);
@@ -52,7 +54,6 @@ body {
     color: var(--sec-color);
 }
 
-/* styling */
 h1 {
     position: relative;
     z-index: 2;
@@ -76,15 +77,15 @@ h1 span {
 
 h1 > span:first-of-type {
     font-family: var(--aleo-font);
-    translate: 1.5em -1.5em;
+    translate: 0.5em -2.5em;
     rotate: 123deg;
+    padding-bottom: 2em;
+    transition: 2s ease translate, 3s ease rotate;
 }
 
 h1 > span:first-of-type:hover {
-    font-size: 15vw;
+    translate: 5.5em -5em;
     rotate: 0deg;
-    width: 200%;
-    transition: var(--slow-ease-font-size), 5s ease rotate;
 }
 
 h1 span:nth-of-type(n+2):nth-last-of-type(n+6) {
@@ -176,7 +177,7 @@ main section:first-of-type li:nth-child(even) {
     cursor: grab;
     padding-left: 0;
     font-size: 0vw;
-    width: 60vw;
+    /*! width: 60vw; */
     transition: transform 1.5s ease, padding 5s ease-in-out;
 }
 
@@ -184,7 +185,7 @@ main section:first-of-type li:nth-child(even):hover {
     font-size: 1.25vw;
     border: ridge var(--sec-color) calc(9/10vw);
     transform: translate(5em);
-    padding-left: 25vw;
+    /*! padding-left: 25vw; */
 }
 
 main section:first-of-type li a {
@@ -214,7 +215,7 @@ main section:first-of-type li a:hover {
 }
 
 main section:first-of-type li:nth-child(even) a:hover {
-    font-size: 17.5vw;
+    /*! font-size: 17.5vw; */
 }
 
 main section:first-of-type li a:hover:after {
@@ -260,32 +261,51 @@ input[type="email"] {
     border-bottom: solid 0.1em;
 }
 
-/* media queries */
-
+/* -- Media queries -- */
 /* minimize motion and animations*/
 @media (prefers-reduced-motion) {
+    h1 {
+        pointer-events: none;
+    }
+    
     h1 > span:first-of-type:hover {
         font-size: inherit;
     }
-    main section:first-of-type li:nth-child(even) {
-        padding-top: 10em;
-    }
-    main section:first-of-type li:nth-child(even):hover {
-        padding-left: inherit;
-        margin: inherit;
-    }
-    main section:first-of-type li:nth-child(even):hover {
+    
+    h1 > span:first-of-type {
         font-size: inherit;
-        border: inherit;
+        rotate: inherit;
+        width: inherit;
     }
     
-    main section:first-of-type li:nth-child(even) a:hover {
-        cursor: pointer;
-        color: inherit;
+    main section:first-of-type h2 {
+        pointer-events: none;
+        opacity: initial;
     }
     
-    main section:first-of-type li:nth-child(even):hover:lang(en):before {
-        display: none;
+    main section:first-of-type ul li a:hover {
+        animation: none;
+        text-transform: inherit;
+    }
+    
+    main section:first-of-type li:nth-child(2n+1) a:hover::after {
+        content: "";
+        animation: none;
+    }
+    
+    main section:first-of-type li:nth-child(2n) {
+        font-size: 100%;
+        text-transform: inherit;
+    }
+    
+    main section:first-of-type li:nth-child(2n):hover {
+        font-size: inherit;
+        transform: none;
+    }
+    
+    main section:first-of-type li:nth-child(2n) a:hover::after {
+        content: "";
+        animation: none;
     }
 }
 
@@ -302,10 +322,6 @@ input[type="email"] {
     main section:first-of-type li a:hover:after {
         color: var(--sec-color);
     }
-}
-
-@counter-style emoji {
-    
 }
 
 /* animations */
@@ -351,7 +367,6 @@ input[type="email"] {
 @keyframes show-header {
     0% {
         padding-left: 0;
-        
         transform: translateX(-70vw);
         opacity: 0%;
     }
